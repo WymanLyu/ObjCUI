@@ -1,4 +1,4 @@
-# ObjcUI
+# ObjCUI
 
 ![](objcUI.png)
 
