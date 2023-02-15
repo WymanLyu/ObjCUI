@@ -1,0 +1,35 @@
+PODS:
+  - FBSnapshotTestCase (2.1.4):
+    - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
+  - FBSnapshotTestCase/Core (2.1.4)
+  - FBSnapshotTestCase/SwiftSupport (2.1.4):
+    - FBSnapshotTestCase/Core
+  - ObjCUI (0.1.0):
+    - YogaKit (~> 1.7)
+  - Yoga (1.14.0)
+  - YogaKit (1.18.1):
+    - Yoga (~> 1.14)
+
+DEPENDENCIES:
+  - FBSnapshotTestCase
+  - ObjCUI (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - FBSnapshotTestCase
+    - Yoga
+    - YogaKit
+
+EXTERNAL SOURCES:
+  ObjCUI:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
+  ObjCUI: 31a872cd7647563052c8f2e5dd012f02d8c7e11b
+  Yoga: cff67a400f6b74dc38eb0bad4f156673d9aa980c
+  YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
+
+PODFILE CHECKSUM: b17a082c6fc307d3461a0f0760227b2aa486555a
+
+COCOAPODS: 1.11.3

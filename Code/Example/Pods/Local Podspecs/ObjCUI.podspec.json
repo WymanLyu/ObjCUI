@@ -1,0 +1,27 @@
+{
+  "name": "ObjCUI",
+  "version": "0.1.0",
+  "summary": "ObjCUI is a user interface toolkit that lets us design apps in a declarative way.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/wyman.lyu@gmail.com/ObjCUI",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "wyman": "wyman.lyu@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/WymanLyu/ObjCUI.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "10.0"
+  },
+  "source_files": "ObjCUI/Classes/**/*",
+  "dependencies": {
+    "YogaKit": [
+      "~> 1.7"
+    ]
+  }
+}
