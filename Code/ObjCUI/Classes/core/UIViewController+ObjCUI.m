@@ -59,8 +59,9 @@
 
 - (void)ocui_viewWillLayoutSubviews {
     [self ocui_viewWillLayoutSubviews];
-    [self.view.ocui_node.ocui_view.yoga applyLayoutPreservingOrigin:YES];
+    self.view.ocui_node.ocui_view.bounds = self.view.bounds;
     self.view.ocui_node.ocui_view.center = self.view.center;
+    [self.view.ocui_node.ocui_view.yoga applyLayoutPreservingOrigin:YES];
 }
 
 

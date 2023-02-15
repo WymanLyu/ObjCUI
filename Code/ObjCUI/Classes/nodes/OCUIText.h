@@ -25,6 +25,8 @@ OCUIDeclAssign(OCUIText, CGFloat, fontSize)
 
 OCUIDeclAssign(OCUIText, UIFontWeight, fontWeight)
 
+OCUIDeclAssign(OCUIText, NSInteger, numberOfLines)
+
 @end
 
 NS_ASSUME_NONNULL_END

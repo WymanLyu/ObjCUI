@@ -7,6 +7,9 @@
 //
 
 // 这里的实现再思考下🤔
+// 两个时机触发：
+// 1. willaddsuper
+// 2. vc 触发
 
 #import "UIView+ObjCUI.h"
 #import "OCUIContext.h"

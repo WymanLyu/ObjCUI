@@ -25,6 +25,8 @@ OCUIImpl(OCUIText, CGFloat, fontSize)
 
 OCUIImpl(OCUIText, UIFontWeight, fontWeight)
 
+OCUIImpl(OCUIText, NSInteger, numberOfLines)
+
 - (UIView *)makeUIView {
     UILabel *label = [UILabel new];
     return label;
@@ -37,6 +39,7 @@ OCUIImpl(OCUIText, UIFontWeight, fontWeight)
     if (self.ocui_textColor) label.textColor = self.ocui_textColor;
     if (self.ocui_fontSize) label.font = [UIFont systemFontOfSize:self.ocui_fontSize];
     if (self.ocui_fontWeightSetted && self.ocui_fontSize) label.font = [UIFont systemFontOfSize:self.ocui_fontSize weight:self.ocui_fontWeight];
+    if (self.ocui_numberOfLinesSetted) label.numberOfLines = self.ocui_numberOfLines;
 }
 
 @end
