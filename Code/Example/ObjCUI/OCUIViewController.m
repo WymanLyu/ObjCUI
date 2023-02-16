@@ -60,12 +60,31 @@
             .marginRight(20)
             .marginBottom(40);
         
-        for (id _ in @[@(1),@(2),@(3),@(4)]) {
+        for (NSNumber* _ in @[@(1),@(2),@(3),@(4)]) {
             NSString *title = @"Weekly Reports";
             NSString *subtitle = @"Get a weekly report with insights about your screen time.";
-            TestCellNode()
-                .title(title)
-                .subtitle(subtitle);
+            
+            if (_.intValue == 1) {
+                // 用自定义view实现
+                View(OCUITestCustomView.new)
+                    .setupUI(^(__kindof OCUITestCustomView * v) {
+                        v.title = title;
+                        v.subtitle = subtitle;
+                        v.backgroundColor = [UIColor lightGrayColor];
+                    });
+            } else if (_.intValue == 2) {
+                // 用传统的view
+                View(OCUITestYoga.new)
+                    .setupUI(^(__kindof OCUITestCustomView * v) {
+                        v.backgroundColor = [UIColor yellowColor];
+                    });
+            } else {
+                // 用导出的node接口
+                TestCellNode()
+                    .title(title)
+                    .subtitle(subtitle)
+                    .backgroundColor([UIColor orangeColor]);
+            }
         }
     })
     .backgroundColor(UIColor.whiteColor);

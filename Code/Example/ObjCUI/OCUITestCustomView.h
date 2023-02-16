@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 // 导出点语法的 类似swiftUI的UIViewRepresentable
 @interface OCUITestCellNode : OCUIView
 extern OCUITestCellNode* TestCellNode();
+OCUIInheritProperty(OCUITestCellNode)
 OCUIDeclCopy(OCUITestCellNode, NSString *, title)
 OCUIDeclCopy(OCUITestCellNode, NSString *, subtitle)
 @end
