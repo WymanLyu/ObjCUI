@@ -82,6 +82,7 @@ OCUIImpl(OCUIFlex, OCUIAlign, alignContent)
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
+    self.ocui_view.yoga.width = YGPointValue(size.width);
     return [self.ocui_view.yoga calculateLayoutWithSize:size];
 }
 

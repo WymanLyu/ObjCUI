@@ -38,21 +38,31 @@ OCUIImpl(OCUITestCellNode, NSString *, subtitle)
 - (OCUIView *)body {
     return HStack(^{
         Image(@"testimage")
+            .borderWidth(2)
+            .borderColor(UIColor.redColor)
             .marginRight(10)
             .width(44)
             .height(44);
 
         Flex(^{
             Text(@"Weekly Reports")
+                .borderWidth(2)
+                .borderColor(UIColor.redColor)
                 .fontWeight(UIFontWeightBold)
                 .fontSize(18);
             Text(@"Get a weekly report with insights about your screen time.")
+                .borderWidth(2)
+                .borderColor(UIColor.redColor)
                 .numberOfLines(0)
                 .textColor(UIColor.grayColor)
                 .fontSize(18);
         })
+        .borderWidth(2)
+        .borderColor(UIColor.redColor)
         .flexDirection(OCUIFlexDirectionColumn);
     })
+    .borderWidth(2)
+    .borderColor(UIColor.redColor)
     .paddingTop(10)
     .paddingBottom(10)
     .paddingLeft(40)

@@ -11,7 +11,7 @@
 
 @interface OCUITestYoga ()
 
-@property (nonatomic, strong) OCUITestYoga *contentV;
+@property (nonatomic, strong) UIView *contentV;
 
 @end
 
@@ -57,13 +57,12 @@
         }];
         [lbl configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
             layout.isEnabled = YES;
-            layout.flexGrow = 1;
-            layout.flexShrink = 1;
+//            layout.flexGrow = 1;
+//            layout.flexShrink = 1;
         }];
         [lbl2 configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
             layout.isEnabled = YES;
-            layout.flexGrow = 1;
-            layout.flexShrink = 1;
+            layout.alignSelf = YGAlignStretch;
         }];
         [contentview2 configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
             layout.isEnabled = YES;
@@ -71,7 +70,6 @@
             layout.justifyContent = YGJustifyFlexStart;
             layout.alignItems = YGAlignFlexStart;
             layout.flexGrow = 1;
-            layout.flexShrink = 1;
         }];
         [contentview configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
             layout.isEnabled = YES;
@@ -80,21 +78,27 @@
             layout.alignItems = YGAlignCenter;
             layout.paddingTop = YGPointValue(10);
             layout.paddingBottom = YGPointValue(20);
-            layout.paddingLeft = YGPointValue(30);
-            layout.paddingRight = YGPointValue(40);
+            layout.paddingLeft = YGPointValue(10);
+            layout.paddingRight = YGPointValue(10);
         }];
     }
     return self;
 }
 
+- (void)setFrame:(CGRect)frame {
+    [super setFrame:frame];
+}
+
 - (void)layoutSubviews {
     [super layoutSubviews];
     self.contentV.frame = self.bounds;
-    [self.contentV.yoga applyLayoutPreservingOrigin:YES];
+//    self.contentV.yoga.width = YGPointValue(self.bounds.size.width);
+    [self.contentV.yoga applyLayoutPreservingOrigin:YES dimensionFlexibility:YGDimensionFlexibilityFlexibleHeight];
 
 }
 - (CGSize)sizeThatFits:(CGSize)size {
     size.height = YGUndefined;
+    self.contentV.yoga.width = YGPointValue(size.width);
     CGSize re = [self.contentV.yoga calculateLayoutWithSize:size];
     return re;
 }

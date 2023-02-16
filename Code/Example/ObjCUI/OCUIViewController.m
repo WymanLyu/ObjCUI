@@ -21,6 +21,7 @@
 @property (nonatomic, assign) BOOL showimg;
 
 @property (nonatomic, strong) OCUITestYoga *cell;
+@property (nonatomic, strong) OCUITestCustomView *customcell;
 
 @end
 
@@ -28,11 +29,14 @@
 
 @State(NSString *, name , setName:)
 
-// yes 则显示OCUITestYoga *cell
-// no 则显示body
-- (BOOL)testYogaView {
-    return NO;
-//    return YES;
+
+// 0 则显示body
+// 1 则显示OCUITestYoga *cell
+// 2 则显示OCUITestCustomView *customcell
+- (int)testYogaView {
+//    return 0;
+//    return 1;
+    return 2;
 }
 
 - (OCUIView *)body {
@@ -138,16 +142,27 @@
     self.name = @"Hello ObjCUI";
     
     self.cell = [OCUITestYoga new];
-    self.cell.hidden = ![self testYogaView];
+    self.cell.hidden = ([self testYogaView] != 1);
     [self.view addSubview:self.cell];
+    
+    self.customcell = [OCUITestCustomView new];
+    self.customcell.hidden = ([self testYogaView] != 2);
+    [self.view addSubview:self.customcell];
     
 }
 
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews ];
-    CGSize s = [self.cell sizeThatFits:CGSizeMake(self.view.frame.size.width, CGFLOAT_MAX)];
-    self.cell.bounds = CGRectMake(0, 0, self.view.frame.size.width, s.height);
-    self.cell.center = CGPointMake(self.view.bounds.size.width*0.5, self.view.bounds.size.height*0.5);
+    if ([self testYogaView] == 1) {
+        CGSize s = [self.cell sizeThatFits:CGSizeMake(self.view.frame.size.width, CGFLOAT_MAX)];
+        self.cell.bounds = CGRectMake(0, 0, self.view.frame.size.width, s.height);
+        self.cell.center = CGPointMake(self.view.bounds.size.width*0.5, self.view.bounds.size.height*0.5);
+    }
+    if ([self testYogaView] == 2) {
+        CGSize s = [self.customcell sizeThatFits:CGSizeMake(self.view.frame.size.width, CGFLOAT_MAX)];
+        self.customcell.bounds = CGRectMake(0, 0, self.view.frame.size.width, s.height);
+        self.customcell.center = CGPointMake(self.view.bounds.size.width*0.5, self.view.bounds.size.height*0.5);
+    }
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {

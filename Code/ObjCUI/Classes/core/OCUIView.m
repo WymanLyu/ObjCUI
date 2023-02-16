@@ -22,7 +22,8 @@
 
 OCUIView* View(UIView *v) {
     OCUIView *node = [OCUIView new];
-    node.view(v);
+    node.view(v)
+        .alignSelf(OCUIAlignStretch);
     [OCUIContext appendNode:node];
     return node;
 }
@@ -178,11 +179,11 @@ OCUIImpl(OCUIView, CGFloat, aspectRatio)
     if (self.ocui_contentModeSetted) self.ocui_view.contentMode = self.ocui_contentMode;
     if (self.ocui_backgroundColorSetted) self.ocui_view.backgroundColor = self.ocui_backgroundColor;
     if (self.ocui_backgroundColorSetted) self.ocui_view.backgroundColor = self.ocui_backgroundColor;
-    if (self.ocui_cornerRadiusSetted) self.ocui_backgroundView.layer.cornerRadius = self.ocui_cornerRadius;
-    if (self.ocui_borderWidthSetted) self.ocui_backgroundView.layer.borderWidth = self.ocui_borderWidth;
-    if (self.ocui_borderColorSetted) self.ocui_backgroundView.layer.borderColor = self.ocui_borderColor.CGColor;
-    if (self.ocui_shadowColorSetted) self.ocui_backgroundView.layer.shadowColor = self.ocui_shadowColor.CGColor;
-    if (self.ocui_shadowOffsetSetted) self.ocui_backgroundView.layer.shadowOffset = self.ocui_shadowOffset;
+    if (self.ocui_cornerRadiusSetted) self.ocui_view.layer.cornerRadius = self.ocui_cornerRadius;
+    if (self.ocui_borderWidthSetted) self.ocui_view.layer.borderWidth = self.ocui_borderWidth;
+    if (self.ocui_borderColorSetted) self.ocui_view.layer.borderColor = self.ocui_borderColor.CGColor;
+    if (self.ocui_shadowColorSetted) self.ocui_view.layer.shadowColor = self.ocui_shadowColor.CGColor;
+    if (self.ocui_shadowOffsetSetted) self.ocui_view.layer.shadowOffset = self.ocui_shadowOffset;
     // 布局信息
     UIView *layoutView = self.ocui_backgroundView ? self.ocui_backgroundView : self.ocui_view;
     [layoutView configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
