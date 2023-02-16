@@ -23,7 +23,7 @@
 OCUIView* View(UIView *v) {
     OCUIView *node = [OCUIView new];
     node.view(v)
-        .alignSelf(OCUIAlignStretch);
+        .alignSelf(OCUIAlignStretch); // 感觉放在外面好点，如果父试图是容器才改这个值
     [OCUIContext appendNode:node];
     return node;
 }
