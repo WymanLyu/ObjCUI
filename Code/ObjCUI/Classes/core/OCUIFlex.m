@@ -9,12 +9,29 @@
 #import "OCUIFlex.h"
 #import "OCUIContext.h"
 #import "UIView+Yoga.h"
+#import "OCUIText.h"
 
 OCUIFlex* Flex(ObjCUIBuild b) {
     OCUIFlex *node = [OCUIFlex new];
     [OCUIContext appendNode:node builder:^{
         if (b) {
             b();
+        }
+    }];
+    // 处理Text的 拉伸和压缩，并传递给父布局
+    [node.childs enumerateObjectsUsingBlock:^(OCUINode * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj isKindOfClass:OCUIView.class]) {
+            OCUIView *viewnode = (OCUIView *)obj;
+            if (viewnode.ocui_flexGrow) {
+                if (!node.ocui_flexGrowSetted) node.flexGrow(1);
+            }
+            if (viewnode.ocui_flexShrink) {
+                if (!node.ocui_flexShrinkSetted) node.flexShrink(1);
+            }
+            if ([viewnode isKindOfClass:OCUIText.class]) {
+                if (!node.ocui_flexGrowSetted) node.flexGrow(1);
+                if (!node.ocui_flexShrinkSetted) node.flexShrink(1);
+            }
         }
     }];
     return node;
@@ -76,10 +93,5 @@ OCUIImpl(OCUIFlex, OCUIAlign, alignContent)
     [super setFrame:frame];
     ;
 }
-
-//- (void)layoutSubviews {
-//    [super layoutSubviews];
-//    [self.yoga applyLayoutPreservingOrigin:YES];
-//}
 
 @end

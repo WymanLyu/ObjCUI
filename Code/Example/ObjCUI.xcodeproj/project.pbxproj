@@ -24,6 +24,8 @@
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		E02D7EF43C3DE587958C0B7A /* Pods_ObjCUI_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3E4256DD3C82EEADD5F384C /* Pods_ObjCUI_Tests.framework */; };
+		F540917F299DF02D00AF620A /* OCUITestYoga.m in Sources */ = {isa = PBXBuildFile; fileRef = F540917E299DF02D00AF620A /* OCUITestYoga.m */; };
+		F5409182299DF08800AF620A /* OCUITestCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = F5409181299DF08800AF620A /* OCUITestCustomView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +68,10 @@
 		A57C30467CD3441D3366B2C7 /* Pods-ObjCUI_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ObjCUI_Tests.debug.xcconfig"; path = "Target Support Files/Pods-ObjCUI_Tests/Pods-ObjCUI_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		F06C7C7CF8A35B0363539DF5 /* Pods-ObjCUI_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ObjCUI_Example.release.xcconfig"; path = "Target Support Files/Pods-ObjCUI_Example/Pods-ObjCUI_Example.release.xcconfig"; sourceTree = "<group>"; };
 		F3E4256DD3C82EEADD5F384C /* Pods_ObjCUI_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ObjCUI_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F540917D299DF02D00AF620A /* OCUITestYoga.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUITestYoga.h; sourceTree = "<group>"; };
+		F540917E299DF02D00AF620A /* OCUITestYoga.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUITestYoga.m; sourceTree = "<group>"; };
+		F5409180299DF08800AF620A /* OCUITestCustomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUITestCustomView.h; sourceTree = "<group>"; };
+		F5409181299DF08800AF620A /* OCUITestCustomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUITestCustomView.m; sourceTree = "<group>"; };
 		FFD4668D5B9336BAC42DC2FD /* ObjCUI.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = ObjCUI.podspec; path = ../ObjCUI.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 /* End PBXFileReference section */
 
@@ -137,6 +143,10 @@
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
 				6003F5A5195388D20070C39A /* OCUIViewController.h */,
 				6003F5A6195388D20070C39A /* OCUIViewController.m */,
+				F540917D299DF02D00AF620A /* OCUITestYoga.h */,
+				F540917E299DF02D00AF620A /* OCUITestYoga.m */,
+				F5409180299DF08800AF620A /* OCUITestCustomView.h */,
+				F5409181299DF08800AF620A /* OCUITestCustomView.m */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
@@ -391,7 +401,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F59E195388D20070C39A /* OCUIAppDelegate.m in Sources */,
+				F540917F299DF02D00AF620A /* OCUITestYoga.m in Sources */,
 				6003F5A7195388D20070C39A /* OCUIViewController.m in Sources */,
+				F5409182299DF08800AF620A /* OCUITestCustomView.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

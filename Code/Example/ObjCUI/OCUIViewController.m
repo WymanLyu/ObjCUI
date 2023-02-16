@@ -10,72 +10,8 @@
 #import "ObjCUI.h"
 #import "OCUIContext.h"
 #import <objc/runtime.h>
-
-@interface OCUITestCell : UIView
-
-@property (nonatomic, copy) NSString *title;
-@property (nonatomic, copy) NSString *subtitle;
-
-@end
-
-@implementation OCUITestCell
-
-- (OCUIView *)body {
-    return HStack(^{
-        Image(@"testimage")
-            .width(44)
-            .height(44)
-            .marginRight(10);
-        Flex(^{
-            Text(@"Weekly Reports")
-                .fontWeight(UIFontWeightBold)
-                .fontSize(18);
-            Text(@"Get a weekly report with insights about your screen time.")
-                .numberOfLines(0)
-                .textColor(UIColor.grayColor)
-                .fontSize(18);
-        })
-        .flexDirection(OCUIFlexDirectionColumn);
-    })
-    .marginTop(10)
-    .marginBottom(10)
-    .marginLeft(20)
-    .marginRight(20);
-}
-
-@end
-
-@interface OCUITestCellNode : OCUIView
-extern OCUITestCellNode* TestCellNode();
-
-OCUIDeclCopy(OCUITestCellNode, NSString *, title)
-OCUIDeclCopy(OCUITestCellNode, NSString *, subtitle)
-
-@end
-
-
-@implementation OCUITestCellNode
-OCUITestCellNode* TestCellNode(void) {
-    OCUITestCellNode *node = [OCUITestCellNode new];
-    [OCUIContext appendNode:node];
-    return node;
-}
-
-OCUIImpl(OCUITestCellNode, NSString *, title)
-OCUIImpl(OCUITestCellNode, NSString *, subtitle)
-
-- (UIView *)makeUIView {
-    OCUITestCell *c = [OCUITestCell new];
-    return c;
-}
-
-- (void)updateUIView {
-    [super updateUIView];
-    [(OCUITestCell *)self.ocui_view setTitle:self.ocui_title];
-    [(OCUITestCell *)self.ocui_view setTitle:self.ocui_subtitle];
-}
-
-@end
+#import "OCUITestYoga.h"
+#import "OCUITestCustomView.h"
 
 
 @interface OCUIViewController ()
@@ -84,14 +20,23 @@ OCUIImpl(OCUITestCellNode, NSString *, subtitle)
 
 @property (nonatomic, assign) BOOL showimg;
 
+@property (nonatomic, strong) OCUITestYoga *cell;
+
 @end
 
 @implementation OCUIViewController
 
 @State(NSString *, name , setName:)
 
+// yes 则显示OCUITestYoga *cell
+// no 则显示body
+- (BOOL)testYogaView {
+    return NO;
+//    return YES;
+}
 
 - (OCUIView *)body {
+    if ([self testYogaView]) return nil;
     return VStack(^{
         
         Image(@"testimage")
@@ -115,7 +60,7 @@ OCUIImpl(OCUITestCellNode, NSString *, subtitle)
             .marginRight(20)
             .marginBottom(40);
         
-        for (id i in @[@(1),@(2),@(3),@(4)]) {
+        for (id _ in @[@(1),@(2),@(3),@(4)]) {
             NSString *title = @"Weekly Reports";
             NSString *subtitle = @"Get a weekly report with insights about your screen time.";
             TestCellNode()
@@ -125,6 +70,7 @@ OCUIImpl(OCUITestCellNode, NSString *, subtitle)
     })
     .backgroundColor(UIColor.whiteColor);
 }
+
 
 //- (OCUIView *)body {
 //    return HStack(^{
@@ -171,6 +117,18 @@ OCUIImpl(OCUITestCellNode, NSString *, subtitle)
 	// Do any additional setup after loading the view, typically from a nib.
     self.showimg = YES;
     self.name = @"Hello ObjCUI";
+    
+    self.cell = [OCUITestYoga new];
+    self.cell.hidden = ![self testYogaView];
+    [self.view addSubview:self.cell];
+    
+}
+
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews ];
+    CGSize s = [self.cell sizeThatFits:CGSizeMake(self.view.frame.size.width, CGFLOAT_MAX)];
+    self.cell.bounds = CGRectMake(0, 0, self.view.frame.size.width, s.height);
+    self.cell.center = CGPointMake(self.view.bounds.size.width*0.5, self.view.bounds.size.height*0.5);
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {

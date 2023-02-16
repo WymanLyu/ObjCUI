@@ -13,6 +13,7 @@
 
 #import "UIView+ObjCUI.h"
 #import "OCUIContext.h"
+#import "UIView+Yoga.h"
 #import <objc/runtime.h>
 
 @implementation UIView (ObjCUI)
@@ -20,8 +21,8 @@
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-//        [self exchangeOriSEL:@selector(layoutSubviews) cusSEL:@selector(ocui_layoutSubviews)];
-//        [self exchangeOriSEL:@selector(sizeThatFits:) cusSEL:@selector(ocui_sizeThatFits:)];
+        [self exchangeOriSEL:@selector(layoutSubviews) cusSEL:@selector(ocui_layoutSubviews)];
+        [self exchangeOriSEL:@selector(sizeThatFits:) cusSEL:@selector(ocui_sizeThatFits:)];
     });
 }
 
@@ -60,9 +61,12 @@
         if (!self.ocui_node) {
             [OCUIContext executeBuildBody:^{
                 self.ocui_node = [self body];
+                if (self.ocui_node.topNode == self.ocui_node) {
+                    self.ocui_node.mainResponder = self;
+                }
             }];
             // 0. 构造视图
-            [self.ocui_node makeUIView];
+            self.ocui_node.ocui_view = [self.ocui_node makeUIView];
             // 1. 设置视图
             [self.ocui_node updateUIView];
         }
@@ -76,26 +80,29 @@
 }
 
 - (void)ocui_layoutSubviews {
-    [self ocui_layoutSubviews];
     if (self.ocui_building) {
         return;
     }
     [self tryBuildNodeView];
-    if (self.ocui_node) {
+    [self ocui_layoutSubviews];
+    if (self.ocui_node && self.ocui_node.mainResponder==self) {
         // 3. 测量
         CGSize s = [self sizeThatFits:self.bounds.size];
         // 4. 布局
-        self.ocui_node.ocui_view.frame = CGRectMake(0, 0, s.width, s.height);
-        self.ocui_node.ocui_view.center = CGPointMake(s.width*0.5, s.height*0.5);
+        self.ocui_node.ocui_view.frame = self.bounds;
+        self.ocui_node.ocui_view.center = CGPointMake(self.bounds.size.width*0.5, self.bounds.size.height*0.5);
         if (!self.ocui_node.ocui_view.superview) {
             [self insertSubview:self.ocui_node.ocui_view atIndex:0];
         }
+        [self.ocui_node.ocui_view.yoga applyLayoutPreservingOrigin:YES];
     }
 }
 
 - (CGSize)ocui_sizeThatFits:(CGSize)size {
     [self tryBuildNodeView];
-    if (self.ocui_node && !self.ocui_building) {
+    if (self.ocui_node && !self.ocui_building && self.ocui_node.mainResponder==self) {
+        // to do 这里怎么判断是限制宽度还是限制高度好呢？
+        size.height = YGUndefined;
         return [self.ocui_node sizeThatFits:size];
     } else {
         return [self ocui_sizeThatFits:size];
