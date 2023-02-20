@@ -42,7 +42,7 @@
 - (OCUIView *)body {
     if ([self testYogaView]) return nil;
     return Scroll(^{
-             VStack(^{
+        VStack(^{
             
             Image(@"testimage")
                 .width(64)
