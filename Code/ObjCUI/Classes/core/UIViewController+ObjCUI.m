@@ -65,7 +65,7 @@
     // ---- 限制宽度（按照常见流式布局强制限制界面宽度）
     // 1. 界面宽度
     self.view.ocui_node.ocui_view.yoga.width = YGPointValue(self.view.bounds.size.width);
-    // 2. 首层scroll宽度 （如果像做横向滚动怎么办？应该要根据个属性来控制。。）
+    // 2. 首层scroll宽度 （如果像做横向滚动怎么办？应该要根据个属性来控制。swiftui好像是根据儿子是vstack还是hstack控制滚动方向？）
     if ([self.view.ocui_node.ocui_view isKindOfClass:OCUIScrollView.class]) {
         OCUIScrollView *scrollview = (OCUIScrollView *)self.view.ocui_node.ocui_view;
         scrollview.contentFlexView.yoga.width = YGPointValue(self.view.bounds.size.width);
