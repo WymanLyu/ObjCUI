@@ -17,7 +17,7 @@
 #import "OCUIZStack.h"
 #import "OCUIImage.h"
 #import "OCUIText.h"
-
+#import "OCUIScroll.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -43,7 +43,7 @@ typedef void(^ObjCUIGeometryBuild)(Geometry *geo);
 extern OCUIHStack* HStack(ObjCUIBuild b);    // 水平布局
 extern OCUIVStack* VStack(ObjCUIBuild b);    // 垂直布局
 extern OCUIZStack* ZStack(ObjCUIBuild b);    // z轴布局
-//extern OCUIContainer* Scroll(ObjCUIBuild b);    // 滚动
+extern OCUIScroll* Scroll(ObjCUIBuild b);    // 滚动
 //extern OCUIContainer* List(ObjCUIBuild b);      // 列表布局
 extern OCUIFlex* Flex(ObjCUIBuild b);      // flex布局
 //extern OCUIContainerNode* LazyScroll(ObjcUIBuild b);// 滚动, reuseConfig

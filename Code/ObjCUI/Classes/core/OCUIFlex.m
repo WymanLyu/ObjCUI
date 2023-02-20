@@ -8,8 +8,8 @@
 
 #import "OCUIFlex.h"
 #import "OCUIContext.h"
-#import "UIView+Yoga.h"
 #import "OCUIText.h"
+#import "UIView+Yoga.h"
 
 OCUIFlex* Flex(ObjCUIBuild b) {
     OCUIFlex *node = [OCUIFlex new];

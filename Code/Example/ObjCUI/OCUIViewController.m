@@ -41,57 +41,123 @@
 
 - (OCUIView *)body {
     if ([self testYogaView]) return nil;
-    return VStack(^{
-        
-        Image(@"testimage")
-            .width(64)
-            .height(64)
-            .marginTop(120);
-        
-        Text(@"Screen Time")
-            .fontSize(22)
-            .fontWeight(UIFontWeightBold)
-            .textColor(UIColor.blackColor)
-            .marginLeft(20)
-            .marginRight(20)
-            .marginBottom(40);
-        
-        Text(@"Get insights about your screen time and set limits for what you want to manage.")
-            .numberOfLines(0)
-            .fontSize(18)
-            .textColor(UIColor.blackColor)
-            .marginLeft(20)
-            .marginRight(20)
-            .marginBottom(40);
-        
-        for (NSNumber* _ in @[@(1),@(2),@(3),@(4)]) {
-            NSString *title = @"Weekly Reports";
-            NSString *subtitle = @"Get a weekly report with insights about your screen time.";
+    return Scroll(^{
+             VStack(^{
             
-            if (_.intValue == 1) {
-                // 用自定义view实现
-                View(OCUITestCustomView.new)
-                    .setupUI(^(__kindof OCUITestCustomView * v) {
-                        v.title = title;
-                        v.subtitle = subtitle;
-                        v.backgroundColor = [UIColor lightGrayColor];
-                    });
-            } else if (_.intValue == 2) {
-                // 用传统的view
-                View(OCUITestYoga.new)
-                    .setupUI(^(__kindof OCUITestCustomView * v) {
-                        v.backgroundColor = [UIColor yellowColor];
-                    });
-            } else {
-                // 用导出的node接口
-                TestCellNode()
-                    .title(title)
-                    .subtitle(subtitle)
-                    .backgroundColor([UIColor orangeColor]);
+            Image(@"testimage")
+                .width(64)
+                .height(64)
+                .marginTop(120);
+            
+            Scroll(^{
+                HStack(^{
+                    for (NSNumber *_ in @[@(1),@(1),@(1),@(1),@(1),@(1),@(1),@(1),@(1)]) {
+                        Image(@"testimage")
+                            .width(64)
+                            .height(64)
+                            .marginRight(10);
+                    }
+                })
+                .alignSelf(OCUIAlignFlexStart); // 不要剧中排列
+            });
+            
+            Text(@"Screen Time")
+                .fontSize(22)
+                .fontWeight(UIFontWeightBold)
+                .textColor(UIColor.blackColor)
+                .marginLeft(20)
+                .marginRight(20)
+                .marginBottom(40);
+            
+            Text(@"Get insights about your screen time and set limits for what you want to manage.")
+                .numberOfLines(0)
+                .fontSize(18)
+                .textColor(UIColor.blackColor)
+                .marginLeft(20)
+                .marginRight(20)
+                .marginBottom(40);
+            
+            for (NSNumber* _ in @[@(1),@(2),@(3),@(4),@(5),@(5),@(5),@(5),@(5),@(5),@(5),@(5),@(5),@(5),@(5),@(5),@(5),@(5),@(5),@(5),@(5),@(5),@(5),@(5),@(5),@(5),@(5),@(5),@(5),@(5),@(5)]) {
+                NSString *title = @"Weekly Reports";
+                NSString *subtitle = @"Get a weekly report with insights about your screen time.";
+                
+                if (_.intValue == 1) {
+                    // 用自定义view实现
+                    View(OCUITestCustomView.new)
+                        .setupUI(^(__kindof OCUITestCustomView * v) {
+                            v.title = title;
+                            v.subtitle = subtitle;
+                            v.backgroundColor = [UIColor lightGrayColor];
+                        });
+                } else if (_.intValue == 2) {
+                    // 用传统的view
+                    View(OCUITestYoga.new)
+                        .setupUI(^(__kindof OCUITestCustomView * v) {
+                            v.backgroundColor = [UIColor yellowColor];
+                        });
+                } else {
+                    // 用导出的node接口
+                    TestCellNode()
+                        .title(title)
+                        .subtitle(subtitle)
+                        .backgroundColor([UIColor orangeColor]);
+                }
             }
-        }
-    })
-    .backgroundColor(UIColor.whiteColor);
+        })
+        .backgroundColor(UIColor.whiteColor);
+    });
+    
+//    return VStack(^{
+//
+//        Image(@"testimage")
+//            .width(64)
+//            .height(64)
+//            .marginTop(120);
+//
+//        Text(@"Screen Time")
+//            .fontSize(22)
+//            .fontWeight(UIFontWeightBold)
+//            .textColor(UIColor.blackColor)
+//            .marginLeft(20)
+//            .marginRight(20)
+//            .marginBottom(40);
+//
+//        Text(@"Get insights about your screen time and set limits for what you want to manage.")
+//            .numberOfLines(0)
+//            .fontSize(18)
+//            .textColor(UIColor.blackColor)
+//            .marginLeft(20)
+//            .marginRight(20)
+//            .marginBottom(40);
+//
+//        for (NSNumber* _ in @[@(1),@(2),@(3),@(4)]) {
+//            NSString *title = @"Weekly Reports";
+//            NSString *subtitle = @"Get a weekly report with insights about your screen time.";
+//
+//            if (_.intValue == 1) {
+//                // 用自定义view实现
+//                View(OCUITestCustomView.new)
+//                    .setupUI(^(__kindof OCUITestCustomView * v) {
+//                        v.title = title;
+//                        v.subtitle = subtitle;
+//                        v.backgroundColor = [UIColor lightGrayColor];
+//                    });
+//            } else if (_.intValue == 2) {
+//                // 用传统的view
+//                View(OCUITestYoga.new)
+//                    .setupUI(^(__kindof OCUITestCustomView * v) {
+//                        v.backgroundColor = [UIColor yellowColor];
+//                    });
+//            } else {
+//                // 用导出的node接口
+//                TestCellNode()
+//                    .title(title)
+//                    .subtitle(subtitle)
+//                    .backgroundColor([UIColor orangeColor]);
+//            }
+//        }
+//    })
+//    .backgroundColor(UIColor.whiteColor);
 }
 
 

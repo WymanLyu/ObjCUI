@@ -102,7 +102,12 @@
     [self tryBuildNodeView];
     if (self.ocui_node && !self.ocui_building && self.ocui_node.mainResponder==self) {
         // to do 这里怎么判断是限制宽度还是限制高度好呢？
-        size.height = YGUndefined;
+        if (size.height == CGFLOAT_MAX) {
+            size.height = YGUndefined;
+        }
+        if (size.width == CGFLOAT_MAX) {
+            size.width = YGUndefined;
+        }
         return [self.ocui_node sizeThatFits:size];
     } else {
         return [self ocui_sizeThatFits:size];

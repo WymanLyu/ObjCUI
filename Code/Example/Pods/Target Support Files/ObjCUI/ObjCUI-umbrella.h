@@ -22,6 +22,7 @@
 #import "UIViewController+ObjCUI.h"
 #import "OCUIHStack.h"
 #import "OCUIImage.h"
+#import "OCUIScroll.h"
 #import "OCUIText.h"
 #import "OCUIVStack.h"
 #import "OCUIZStack.h"
