@@ -10,28 +10,13 @@
 #import "OCUIContext.h"
 #import "OCUIText.h"
 #import "UIView+Yoga.h"
+#import "OCUISpacer.h"
 
 OCUIFlex* Flex(ObjCUIBuild b) {
     OCUIFlex *node = [OCUIFlex new];
     [OCUIContext appendNode:node builder:^{
         if (b) {
             b();
-        }
-    }];
-    // 处理Text的 拉伸和压缩，并传递给父布局
-    [node.childs enumerateObjectsUsingBlock:^(OCUINode * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([obj isKindOfClass:OCUIView.class]) {
-            OCUIView *viewnode = (OCUIView *)obj;
-            if (viewnode.ocui_flexGrow) {
-                if (!node.ocui_flexGrowSetted) node.flexGrow(1);
-            }
-            if (viewnode.ocui_flexShrink) {
-                if (!node.ocui_flexShrinkSetted) node.flexShrink(1);
-            }
-            if ([viewnode isKindOfClass:OCUIText.class]) {
-                if (!node.ocui_flexGrowSetted) node.flexGrow(1);
-                if (!node.ocui_flexShrinkSetted) node.flexShrink(1);
-            }
         }
     }];
     return node;
@@ -63,8 +48,17 @@ OCUIImpl(OCUIFlex, OCUIAlign, alignContent)
 
 - (void)updateUIView {
     [super updateUIView];
+    
     // 布局信息
     UIView *layoutView = self.ocui_backgroundView ? self.ocui_backgroundView : self.ocui_view;
+    
+    // 处理Text的 拉伸和压缩，并传递给父布局
+    [self.childs enumerateObjectsUsingBlock:^(OCUINode * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj isKindOfClass:OCUISpacer.class]) {
+            self.ocui_alignSelf = OCUIAlignStretch;
+        }
+    }];
+    
     [layoutView configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
         layout.isEnabled = YES;
         if (self.ocui_flexDirectionSetted) layout.flexDirection = (YGFlexDirection)self.ocui_flexDirection;
@@ -72,6 +66,7 @@ OCUIImpl(OCUIFlex, OCUIAlign, alignContent)
         if (self.ocui_justifyContentSetted) layout.justifyContent = (YGJustify)self.ocui_justifyContent;
         if (self.ocui_alignItemsSetted) layout.alignItems = (YGAlign)self.ocui_alignItems;
         if (self.ocui_alignContentSetted) layout.alignContent = (YGAlign)self.ocui_alignContent;
+        if (self.ocui_alignSelf) layout.alignSelf = (YGAlign)self.ocui_alignSelf;
     }];
     [self.childs enumerateObjectsUsingBlock:^(OCUINode * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([obj isKindOfClass:OCUIView.class]) {

@@ -11,6 +11,7 @@
 
 OCUIText* Text(NSString *text) {
     OCUIText *node = [OCUIText new];
+//    node.alignSelf(OCUIAlignStretch); ?这个要默认设置吗？
     node.text(text);
     [OCUIContext appendNode:node];
     return node;

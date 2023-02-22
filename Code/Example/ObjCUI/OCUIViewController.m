@@ -49,6 +49,32 @@
                 .height(64)
                 .marginTop(120);
             
+            HStack(^{
+                Text(@"left")
+                    .borderWidth(2)
+                    .borderColor(UIColor.redColor);
+                Spacer(20);
+                Text(@"right rightrightrightrightrightrightrightrightrightrightright")
+                    .borderWidth(2)
+                    .borderColor(UIColor.redColor);
+            })
+            .borderWidth(2)
+            .borderColor(UIColor.redColor);
+            
+            VStack(^{
+                Text(@"top")
+                    .borderWidth(2)
+                    .borderColor(UIColor.redColor);
+                Spacer(20);
+                Text(@"bottom")
+                    .borderWidth(2)
+                    .borderColor(UIColor.redColor);
+            })
+            .height(180)
+            .marginTop(20)
+            .borderWidth(2)
+            .borderColor(UIColor.redColor);
+            
             Scroll(^{
                 HStack(^{
                     for (NSNumber *_ in @[@(1),@(1),@(1),@(1),@(1),@(1),@(1),@(1),@(1)]) {

@@ -18,6 +18,7 @@
 #import "OCUIImage.h"
 #import "OCUIText.h"
 #import "OCUIScroll.h"
+#import "OCUISpacer.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -52,9 +53,9 @@ extern OCUIFlex* Flex(ObjCUIBuild b);      // flex布局
 extern OCUIView* View(UIView *v);
 extern OCUIImage* Image(NSString *src);
 extern OCUIText* Text(NSString *text);
+extern OCUISpacer* Spacer(CGFloat minLength);
 //extern OCUIView* Padding(CGFloat padding);
 //extern OCUIView* Divider(CGFloat padding);
-//extern OCUIView* Spacer(CGFloat padding);
 //extern OCUIView* Input(NSString *text);
 //extern OCUIView* Row(ObjCUIBuild b);
 //extern OCUIView* Cell(ObjCUIBuild cls);
