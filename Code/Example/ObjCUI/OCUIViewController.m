@@ -34,9 +34,9 @@
 // 1 则显示OCUITestYoga *cell
 // 2 则显示OCUITestCustomView *customcell
 - (int)testYogaView {
-    return 0;
+//    return 0;
 //    return 1;
-//    return 2;
+    return 2;
 }
 
 - (OCUIView *)body {
@@ -54,7 +54,7 @@
                     .borderWidth(2)
                     .borderColor(UIColor.redColor);
                 Spacer(20);
-                Text(@"right rightrightrightrightrightrightrightrightrightrightright")
+                Text(@"right")
                     .borderWidth(2)
                     .borderColor(UIColor.redColor);
             })
@@ -74,6 +74,19 @@
             .marginTop(20)
             .borderWidth(2)
             .borderColor(UIColor.redColor);
+            
+            VStack(^{
+                Spacer(0);
+                Text(@"center")
+                    .borderWidth(2)
+                    .borderColor(UIColor.redColor);
+                Spacer(0);
+            })
+            .height(180)
+            .marginTop(20)
+            .borderWidth(2)
+            .borderColor(UIColor.redColor);
+            
             
             Scroll(^{
                 HStack(^{

@@ -55,7 +55,7 @@ OCUIImpl(OCUIFlex, OCUIAlign, alignContent)
     // 处理Text的 拉伸和压缩，并传递给父布局
     [self.childs enumerateObjectsUsingBlock:^(OCUINode * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([obj isKindOfClass:OCUISpacer.class]) {
-            self.ocui_alignSelf = OCUIAlignStretch;
+            self.ocui_alignSelf = OCUIAlignStretch; // 这个要吗？
         }
     }];
     

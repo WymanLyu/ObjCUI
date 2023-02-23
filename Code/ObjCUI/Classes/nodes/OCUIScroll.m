@@ -29,6 +29,7 @@ OCUIScroll* Scroll(ObjCUIBuild b) {
 
 - (UIView *)makeUIView {
     OCUIScrollView *scrollView = [OCUIScrollView new];
+    // 要做个逻辑如果第一个不是容器的话给他默认塞一个容器 VStack吧
     [self.childs enumerateObjectsUsingBlock:^(OCUINode * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([obj isKindOfClass:OCUIView.class]) {
             OCUIView *viewNode = (OCUIView *)obj;
