@@ -50,7 +50,7 @@ OCUIImpl(OCUITestCellNode, NSString *, subtitle)
                 .borderColor(UIColor.redColor)
                 .fontWeight(UIFontWeightBold)
                 .fontSize(18);
-            Text(@"Get a weekly report with insights about your screen time.")
+            Text(@"Get a weekly report with insights about your screen time.Get a weekly report with insights about your screen time.Get a weekly report with insights about your screen time.Get a weekly report with insights about your screen time.Get a weekly report with insights about your screen time.")
                 .borderWidth(2)
                 .borderColor(UIColor.redColor)
                 .numberOfLines(0)

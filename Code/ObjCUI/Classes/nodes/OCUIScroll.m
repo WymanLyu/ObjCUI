@@ -74,7 +74,7 @@ OCUIScroll* Scroll(ObjCUIBuild b) {
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    if (CGSizeEqualToSize(self.contentSize, CGSizeZero)) {
+    if (CGSizeEqualToSize(self.contentSize, CGSizeZero) || self.contentFlexView.yoga.isDirty) {
         CGSize contents = [self sizeThatFits:CGSizeMake(YGUndefined, YGUndefined)];
         self.contentFlexView.frame = CGRectMake(0, 0, contents.width, contents.height);
         [self.contentFlexView.yoga applyLayoutPreservingOrigin:YES];

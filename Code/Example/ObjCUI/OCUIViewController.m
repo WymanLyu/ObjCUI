@@ -34,8 +34,8 @@
 // 1 则显示OCUITestYoga *cell
 // 2 则显示OCUITestCustomView *customcell
 - (int)testYogaView {
-//    return 0;
-    return 1;
+    return 0;
+//    return 1;
 //    return 2;
 }
 
@@ -50,9 +50,12 @@
                 .marginTop(120);
             
             HStack(^{
-                Text(@"left")
-                    .borderWidth(2)
-                    .borderColor(UIColor.redColor);
+                HStack(^{
+                    Text(@"left")
+                        .borderWidth(2)
+                        .borderColor(UIColor.redColor);
+                })
+                .backgroundColor(UIColor.grayColor);
                 Spacer(20);
                 Text(@"right")
                     .borderWidth(2)

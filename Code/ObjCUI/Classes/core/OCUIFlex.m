@@ -47,17 +47,37 @@ OCUIImpl(OCUIFlex, OCUIAlign, alignContent)
 }
 
 - (void)updateUIView {
+    __block BOOL hasSpacer = NO;
+    __block BOOL hasText = NO;
+    __block BOOL hasFlex = NO;
+    // 处理Text的 拉伸和压缩，并传递给父布局
+    [self.childs enumerateObjectsUsingBlock:^(OCUINode * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj isKindOfClass:OCUISpacer.class]) {
+            hasSpacer = YES;
+        } else if ([obj isKindOfClass:OCUIText.class]) {
+            hasText = YES;
+        } else if ([obj isKindOfClass:OCUIFlex.class]) {
+            hasFlex = YES;
+        }
+    }];
+//    if (hasSpacer) {
+//        self.alignSelf(OCUIAlignStretch); // 这个要吗？
+//    } else {
+//        if (hasText || hasFlex) {
+//            self.flexGrow(1);
+//            self.flexShrink(1);
+//        }
+//    }
+    // 容器都是可拉伸可压缩？还是根据内容是否可拉伸可压缩来处理 好呢? （同级遇到spacer是否要让道？）感觉容器只允许压缩比较好？
+//    self.flexGrow(1);
+    self.flexShrink(1);
+    // 还是尽可能要铺满？
+    self.alignSelf(OCUIAlignStretch); // 这个要吗？
+    
     [super updateUIView];
     
     // 布局信息
     UIView *layoutView = self.ocui_backgroundView ? self.ocui_backgroundView : self.ocui_view;
-    
-    // 处理Text的 拉伸和压缩，并传递给父布局
-    [self.childs enumerateObjectsUsingBlock:^(OCUINode * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([obj isKindOfClass:OCUISpacer.class]) {
-            self.ocui_alignSelf = OCUIAlignStretch; // 这个要吗？
-        }
-    }];
     
     [layoutView configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
         layout.isEnabled = YES;

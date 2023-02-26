@@ -69,8 +69,10 @@
     if ([self.view.ocui_node.ocui_view isKindOfClass:OCUIScrollView.class]) {
         OCUIScrollView *scrollview = (OCUIScrollView *)self.view.ocui_node.ocui_view;
         scrollview.contentFlexView.yoga.width = YGPointValue(self.view.bounds.size.width);
+//        [scrollview.contentFlexView.yoga markDirty];
     }
     // ----
+    [self.view.ocui_node.ocui_view.yoga markDirty];
     [self.view.ocui_node.ocui_view.yoga applyLayoutPreservingOrigin:YES];
 }
 
