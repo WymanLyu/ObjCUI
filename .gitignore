@@ -20,8 +20,6 @@ DerivedData
 *.dSYM.zip
 *.ipa
 */xcuserdata/*
-*.xcworkspace
-*.xcodeproj
 !*_Xcode.xcodeproj
 .idea
 */.idea/*
