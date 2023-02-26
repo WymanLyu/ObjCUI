@@ -69,12 +69,13 @@
             layout.flexDirection = YGFlexDirectionColumn;
             layout.justifyContent = YGJustifyFlexStart;
             layout.alignItems = YGAlignFlexStart;
+            layout.flexShrink = 1;
             layout.flexGrow = 1;
         }];
         [contentview configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
             layout.isEnabled = YES;
             layout.flexDirection = YGFlexDirectionRow;
-            layout.justifyContent = YGJustifyFlexStart;
+//            layout.justifyContent = YGJustifyFlexStart;
             layout.alignItems = YGAlignCenter;
             layout.paddingTop = YGPointValue(10);
             layout.paddingBottom = YGPointValue(20);

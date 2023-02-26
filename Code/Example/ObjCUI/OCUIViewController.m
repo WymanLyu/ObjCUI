@@ -34,8 +34,8 @@
 // 1 则显示OCUITestYoga *cell
 // 2 则显示OCUITestCustomView *customcell
 - (int)testYogaView {
-    return 0;
-//    return 1;
+//    return 0;
+    return 1;
 //    return 2;
 }
 
